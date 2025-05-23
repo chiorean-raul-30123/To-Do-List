@@ -1,0 +1,27 @@
+<h2>Adaugă Task</h2>
+
+<form (ngSubmit)="onSubmit()" #taskForm="ngForm" class="task-form">
+  <div class="form-group">
+    <label for="title">Titlu</label>
+    <input type="text" id="title" name="title" [(ngModel)]="task.title" required />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Descriere</label>
+    <textarea id="description" name="description" [(ngModel)]="task.description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate">Data limită</label>
+    <input type="date" id="dueDate" name="dueDate" [(ngModel)]="task.dueDate" />
+  </div>
+
+  <div class="form-group checkbox">
+    <label>
+      <input type="checkbox" name="completed" [(ngModel)]="task.completed" />
+      Completat
+    </label>
+  </div>
+
+  <button type="submit">{{ isEditing ? 'Actualizează' : 'Adaugă' }} Task</button>
+</form>

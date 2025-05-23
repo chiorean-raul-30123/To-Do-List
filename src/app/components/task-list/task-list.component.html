@@ -1,0 +1,37 @@
+<h2>Task-uri necompletate</h2>
+
+<ul *ngIf="incompleteTasks.length > 0; else noTasks">
+  <li *ngFor="let task of incompleteTasks">
+    <strong>{{ task.title }}</strong> - {{ task.description }}<br />
+    <span>Data limită: {{ task.dueDate }}</span><br />
+    <button (click)="editTask(task)">✏️ Editează</button>
+    <button (click)="deleteTask(task.id)">🗑️ Șterge</button>
+  </li>
+</ul>
+
+<ng-template #noTasks>
+  <p>Nu există task-uri necompletate.</p>
+</ng-template>
+
+<hr />
+
+<!-- Toggle completate -->
+<button (click)="toggleCompleted()">
+  {{ completedVisible ? 'Ascunde' : 'Afișează' }} task-urile completate
+</button>
+
+<!-- Task-uri completate (glide down) -->
+<div *ngIf="completedVisible" class="completed-tasks">
+  <h3>Task-uri completate</h3>
+  <ul *ngIf="completedTasks.length > 0; else noCompleted">
+    <li *ngFor="let task of completedTasks">
+      <strong>{{ task.title }}</strong> - {{ task.description }}<br />
+      <span>Completat în: {{ task.dueDate }}</span><br />
+      <button (click)="editTask(task)">✏️ Modifică</button>
+      <button (click)="deleteTask(task.id)">🗑️ Șterge</button>
+    </li>
+  </ul>
+  <ng-template #noCompleted>
+    <p>Nu există task-uri completate.</p>
+  </ng-template>
+</div>
